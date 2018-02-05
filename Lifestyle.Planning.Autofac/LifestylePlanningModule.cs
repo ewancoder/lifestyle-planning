@@ -1,9 +1,10 @@
 ﻿namespace Lifestyle.Planning.Autofac
 {
     using global::Autofac;
-    using Lifestyle.Planning.Application;
-    using Lifestyle.Planning.Domain;
-    using Lifestyle.Planning.Infrastructure;
+    using Application;
+    using Application.ReadModels;
+    using Domain;
+    using Infrastructure;
 
     public sealed class LifestylePlanningModule : Module
     {
@@ -23,6 +24,9 @@
 
             builder.RegisterType<ProjectApplication>()
                 .As<IProjectApplication>();
+
+            builder.RegisterType<ProjectQuery>()
+                .As<IProjectQuery>();
         }
 
         private static void RegisterTaskModule(ContainerBuilder builder)

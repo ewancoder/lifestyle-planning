@@ -36,6 +36,9 @@
   <ItemGroup>
     <Compile Include="IProjectApplication.cs" />
     <Compile Include="ITaskApplication.cs" />
+    <Compile Include="ReadModels\IProjectQuery.cs" />
+    <Compile Include="ReadModels\ProjectInfo.cs" />
+    <Compile Include="ReadModels\TaskInfo.cs" />
     <Compile Include="TaskApplication.cs" />
     <Compile Include="ProjectApplication.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -50,5 +53,6 @@
       <Name>Lifestyle.Shared</Name>
     </ProjectReference>
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

@@ -9,21 +9,20 @@
     public class TaskDao
     {
         [Key]
-        [Column("row_id")]
         public int RowId { get; set; }
 
-        [Column("task_id")]
+        [ForeignKey(nameof(Project))]
+        public int ProjectRowId { get; set; }
+        public ProjectDao Project { get; set; }
+
         [Index("ix_task_id", IsUnique = true)]
         public Guid TaskId { get; set; }
 
-        [Column("project_id")]
         [Index("ix_project_id")]
         public Guid ProjectId { get; set; }
 
-        [Column("name")]
         public string Name { get; set; }
 
-        [Column("is_archived")]
         public bool IsArchived { get; set; }
 
         public static TaskDao CreateFrom(Task.State state)

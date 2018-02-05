@@ -45,6 +45,7 @@
     <Compile Include="ModelBuilderExtensions.cs" />
     <Compile Include="Models\ProjectDao.cs" />
     <Compile Include="Models\TaskDao.cs" />
+    <Compile Include="ProjectQuery.cs" />
     <Compile Include="ProjectRepository.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="TaskRepository.cs" />
@@ -53,6 +54,10 @@
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\Lifestyle.Planning.Application\Lifestyle.Planning.Application.csproj">
+      <Project>{A8C9F756-7455-461F-AC3D-3785EAB75254}</Project>
+      <Name>Lifestyle.Planning.Application</Name>
+    </ProjectReference>
     <ProjectReference Include="..\Lifestyle.Planning.Domain\Lifestyle.Planning.Domain.csproj">
       <Project>{8FF5A576-A612-4387-A23D-E9015BE8266A}</Project>
       <Name>Lifestyle.Planning.Domain</Name>

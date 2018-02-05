@@ -1,6 +1,7 @@
 ﻿namespace Lifestyle.Planning.Infrastructure.Models
 {
     using System;
+    using System.Collections.Generic;
     using System.ComponentModel.DataAnnotations;
     using System.ComponentModel.DataAnnotations.Schema;
     using Domain;
@@ -9,18 +10,16 @@
     public class ProjectDao
     {
         [Key]
-        [Column("row_id")]
         public int RowId { get; set; }
 
-        [Column("project_id")]
         [Index("ix_project_id", IsUnique = true)]
         public Guid ProjectId { get; set; }
 
-        [Column("name")]
         public string Name { get; set; }
 
-        [Column("is_archived")]
         public bool IsArchived { get; set; }
+
+        public virtual ICollection<TaskDao> Tasks { get; set; }
 
         public static ProjectDao CreateFrom(Project.State state)
         {
