@@ -37,6 +37,7 @@
     <Compile Include="IProjectApplication.cs" />
     <Compile Include="ITaskApplication.cs" />
     <Compile Include="ReadModels\IProjectQuery.cs" />
+    <Compile Include="ReadModels\ProjectDetails.cs" />
     <Compile Include="ReadModels\ProjectInfo.cs" />
     <Compile Include="ReadModels\TaskInfo.cs" />
     <Compile Include="TaskApplication.cs" />

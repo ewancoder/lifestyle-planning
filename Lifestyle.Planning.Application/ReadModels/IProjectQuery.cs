@@ -5,7 +5,7 @@
 
     public interface IProjectQuery
     {
-        IEnumerable<ProjectInfo> FindAll();
-        ProjectInfo FindById(Guid projectId);
+        IEnumerable<ProjectInfo> FindAllInfo();
+        ProjectDetails FindDetailsById(Guid projectId);
     }
 }

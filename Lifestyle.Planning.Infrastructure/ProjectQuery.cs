@@ -16,28 +16,26 @@
 
             _context = context;
         }
-        public IEnumerable<ProjectInfo> FindAll()
+        public IEnumerable<ProjectInfo> FindAllInfo()
         {
             return _context.Projects
                 .Where(p => !p.IsArchived)
                 .Select(p => new ProjectInfo
                 {
                     ProjectId = p.ProjectId,
-                    Name = p.Name,
-                    Tasks = p.Tasks.Select(t => new TaskInfo
-                    {
-                        TaskId = t.TaskId,
-                        Name = t.Name
-                    })
+                    Name = p.Name
                 }).ToList();
         }
 
-        public ProjectInfo FindById(Guid projectId)
+        public ProjectDetails FindDetailsById(Guid projectId)
         {
             var dao = _context.Projects
                 .SingleOrDefault(p => !p.IsArchived && p.ProjectId == projectId);
 
-            return new ProjectInfo
+            if (dao == null)
+                return null;
+
+            return new ProjectDetails
             {
                 ProjectId = dao.ProjectId,
                 Name = dao.Name,

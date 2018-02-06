@@ -27,16 +27,16 @@
 
         [HttpGet]
         [Route("")]
-        public IEnumerable<ProjectInfo> FindAll()
+        public IEnumerable<ProjectInfo> FindAllInfo()
         {
-            return _projectQuery.FindAll();
+            return _projectQuery.FindAllInfo();
         }
 
         [HttpGet]
         [Route("{projectId}")]
-        public ProjectInfo FindById(Guid projectId)
+        public ProjectDetails FindDetailsById(Guid projectId)
         {
-            return _projectQuery.FindById(projectId);
+            return _projectQuery.FindDetailsById(projectId);
         }
 
         [HttpPost]
