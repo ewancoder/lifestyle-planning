@@ -1,7 +1,7 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 15
-VisualStudioVersion = 15.0.26730.16
+VisualStudioVersion = 15.0.27130.2010
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Lifestyle.Planning.Domain", "Lifestyle.Planning.Domain\Lifestyle.Planning.Domain.csproj", "{8FF5A576-A612-4387-A23D-E9015BE8266A}"
 EndProject
@@ -16,6 +16,8 @@ EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Lifestyle.Planning.Application", "Lifestyle.Planning.Application\Lifestyle.Planning.Application.csproj", "{A8C9F756-7455-461F-AC3D-3785EAB75254}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Lifestyle.Planning.Autofac", "Lifestyle.Planning.Autofac\Lifestyle.Planning.Autofac.csproj", "{6E2BAC4A-6A47-4AB2-BFE9-54245EF97AC2}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Lifestyle.Planning.Domain.Tests", "Lifestyle.Planning.Domain.Tests\Lifestyle.Planning.Domain.Tests.csproj", "{C2616620-1ADB-4445-8DBF-8C1D9B848E7F}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -51,6 +53,10 @@ Global
 		{6E2BAC4A-6A47-4AB2-BFE9-54245EF97AC2}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{6E2BAC4A-6A47-4AB2-BFE9-54245EF97AC2}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{6E2BAC4A-6A47-4AB2-BFE9-54245EF97AC2}.Release|Any CPU.Build.0 = Release|Any CPU
+		{C2616620-1ADB-4445-8DBF-8C1D9B848E7F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{C2616620-1ADB-4445-8DBF-8C1D9B848E7F}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{C2616620-1ADB-4445-8DBF-8C1D9B848E7F}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{C2616620-1ADB-4445-8DBF-8C1D9B848E7F}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
