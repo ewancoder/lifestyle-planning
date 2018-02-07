@@ -78,10 +78,11 @@
             "When I create task"
                 .x(() => task = new Task(taskId, projectId, name));
 
-            "Then task has appropriate identity and name".x(() =>
+            "Then task has appropriate identity, name and project identity".x(() =>
             {
                 Assert.Equal(taskId, task.GetState().TaskId);
                 Assert.Equal(name, task.GetState().Name);
+                Assert.Equal(projectId, task.GetState().ProjectId);
             });
         }
 
