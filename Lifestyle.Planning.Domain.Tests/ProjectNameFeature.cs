@@ -55,5 +55,18 @@
             new object[] { new string('f', 99) },
             new object[] { new string('f', 100) }
         };
+
+        [Trait("Category", "Project name")]
+        [Scenario(DisplayName = "Should not accept null")]
+        public void ShouldNotAcceptNull(string name, Exception exception)
+        {
+            "Given name is null".x(() => name = null);
+
+            "When I create project name"
+                .x(() => exception = Record.Exception(() => new ProjectName(name)));
+
+            $"Then {nameof(ArgumentNullException)} should be thrown"
+                .x(() => Assert.IsType<ArgumentNullException>(exception));
+        }
     }
 }

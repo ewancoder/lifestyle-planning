@@ -1,6 +1,7 @@
 ﻿namespace Lifestyle.Planning.Domain.Tests
 {
     using System;
+    using System.Collections.Generic;
     using Xbehave;
     using Xunit;
 
@@ -95,6 +96,28 @@
 
             "Then task is not archived"
                 .x(() => Assert.False(task.GetState().IsArchived));
+        }
+
+        [Trait("Category", "Task")]
+        [Fact(DisplayName = "Should not accept null arguments")]
+        public void ShouldNotAcceptNullArguments()
+        {
+            var task = TestFixture.Task();
+
+            ThrowsNull(new Action[]
+            {
+                () => new Task(null, TestFixture.ProjectId(), TestFixture.TaskName()),
+                () => new Task(TestFixture.TaskId(), null, TestFixture.TaskName()),
+                () => new Task(TestFixture.TaskId(), TestFixture.ProjectId(), null),
+                () => new Task(null),
+                () => task.Rename(null)
+            });
+        }
+
+        private void ThrowsNull(IEnumerable<Action> actions)
+        {
+            foreach (var action in actions)
+                Assert.Throws<ArgumentNullException>(action);
         }
     }
 }
