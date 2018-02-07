@@ -61,6 +61,8 @@
     <Compile Include="TaskFeature.cs" />
     <Compile Include="ProjectFeature.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="ProjectNamePrimitive.cs" />
+    <Compile Include="TaskNamePrimitive.cs" />
     <Compile Include="TestFixture.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -71,6 +73,10 @@
     <ProjectReference Include="..\Lifestyle.Planning.Domain\Lifestyle.Planning.Domain.csproj">
       <Project>{8ff5a576-a612-4387-a23d-e9015be8266a}</Project>
       <Name>Lifestyle.Planning.Domain</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Lifestyle.Shared.Tests\Lifestyle.Shared.Tests.csproj">
+      <Project>{d535e9ab-c98a-42d0-8324-9007c2baaf10}</Project>
+      <Name>Lifestyle.Shared.Tests</Name>
     </ProjectReference>
     <ProjectReference Include="..\Lifestyle.Shared\Lifestyle.Shared.csproj">
       <Project>{16529f1e-b20c-4f33-a91a-c34ba19157d6}</Project>

@@ -5,9 +5,9 @@
     using Xbehave;
     using Xunit;
 
+    [Trait("Category", "Project")]
     public sealed class ProjectFeature
     {
-        [Trait("Category", "Project")]
         [Scenario(DisplayName = "Can rename")]
         public void CanRename(Project project, ProjectName name)
         {
@@ -27,7 +27,6 @@
                 .x(() => Assert.Equal(name, project.GetState().Name));
         }
 
-        [Trait("Category", "Project")]
         [Scenario(DisplayName = "Can archive")]
         public void CanArchive(Project project)
         {
@@ -44,7 +43,6 @@
                 .x(() => Assert.True(project.GetState().IsArchived));
         }
 
-        [Trait("Category", "Project")]
         [Scenario(DisplayName = "Cannot archive already archived project")]
         public void CannotArchiveAlreadyArchivedProject(Project project, Exception exception)
         {
@@ -63,7 +61,6 @@
                 .x(() => Assert.IsType<InvalidOperationException>(exception));
         }
 
-        [Trait("Category", "Project")]
         [Scenario(DisplayName = "Can create")]
         public void CanCreate(ProjectId projectId, ProjectName name, Project project)
         {
@@ -83,7 +80,6 @@
             });
         }
 
-        [Trait("Category", "Project")]
         [Scenario(DisplayName = "Should not be archived when created")]
         public void ShouldNotBeArchivedWhenCreated(Project project)
         {
@@ -94,7 +90,6 @@
                 .x(() => Assert.False(project.GetState().IsArchived));
         }
 
-        [Trait("Category", "Project")]
         [Fact(DisplayName = "Should not accept null arguments")]
         public void ShouldNotAcceptNullArguments()
         {

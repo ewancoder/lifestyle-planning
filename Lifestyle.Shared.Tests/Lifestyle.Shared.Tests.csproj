@@ -49,13 +49,26 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="GenericPrimitive.cs" />
+    <Compile Include="PrimitiveTests.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="ReferencePrimitiveTests.cs" />
+    <Compile Include="Primitive\ReferenceTestPrimitive.cs" />
+    <Compile Include="Primitive\ReferenceTypePrimitiveTests.cs" />
+    <Compile Include="Primitive\ValueTestPrimitive.cs" />
+    <Compile Include="Primitive\ValueTypePrimitiveTests.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
     <Analyzer Include="..\packages\xunit.analyzers.0.8.0\analyzers\dotnet\cs\xunit.analyzers.dll" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\Lifestyle.Shared\Lifestyle.Shared.csproj">
+      <Project>{16529f1e-b20c-4f33-a91a-c34ba19157d6}</Project>
+      <Name>Lifestyle.Shared</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">
