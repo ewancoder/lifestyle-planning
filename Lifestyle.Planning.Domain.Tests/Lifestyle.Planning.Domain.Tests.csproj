@@ -56,6 +56,8 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="ProjectIdentityTests.cs" />
+    <Compile Include="TaskIdentityTests.cs" />
     <Compile Include="TaskNameFeature.cs" />
     <Compile Include="ProjectNameFeature.cs" />
     <Compile Include="TaskFeature.cs" />
