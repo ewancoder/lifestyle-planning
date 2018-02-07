@@ -2,7 +2,7 @@
 {
     public sealed class TaskName : Name
     {
-        public TaskName(string value) : base(value)
+        public TaskName(string value) : base(value, 100)
         {
         }
     }

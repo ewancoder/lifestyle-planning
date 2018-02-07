@@ -2,7 +2,7 @@
 {
     public sealed class ProjectName : Name
     {
-        public ProjectName(string value) : base(value)
+        public ProjectName(string value) : base(value, 100)
         {
         }
     }
