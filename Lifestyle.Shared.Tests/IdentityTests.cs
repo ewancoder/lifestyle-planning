@@ -26,55 +26,55 @@
         {
             var valueA = SameValue();
             var valueB = AnotherValue();
-            var IdentityA1 = CreateIdentity(valueA);
-            var IdentityA2 = CreateIdentity(valueA);
-            var IdentityB1 = CreateIdentity(valueB);
+            var identityA1 = CreateIdentity(valueA);
+            var identityA2 = CreateIdentity(valueA);
+            var identityB1 = CreateIdentity(valueB);
 
-            Assert.Equal(IdentityA1, IdentityA2);
-            Assert.Equal(IdentityA1.GetHashCode(), IdentityA2.GetHashCode());
+            Assert.Equal(identityA1, identityA2);
+            Assert.Equal(identityA1.GetHashCode(), identityA2.GetHashCode());
 
-            Assert.NotEqual(IdentityA1, IdentityB1);
-            Assert.NotEqual(IdentityA1.GetHashCode(), IdentityB1.GetHashCode());
+            Assert.NotEqual(identityA1, identityB1);
+            Assert.NotEqual(identityA1.GetHashCode(), identityB1.GetHashCode());
         }
 
         [Fact(DisplayName = "Equals test")]
         public void ShouldPassEqualsTest()
         {
             var value = SameValue();
-            var Identity = CreateIdentity(value);
+            var identity = CreateIdentity(value);
             var sameIdentity = CreateIdentity(value);
             var anotherIdentity = new GenericIdentity<TValue>(value);
 
-            Assert.False(Identity.Equals((object)null));
-            Assert.True(Identity.Equals((object)Identity));
-            Assert.False(Identity.Equals((object)anotherIdentity));
-            Assert.True(Identity.Equals((object)sameIdentity));
-            Assert.False(Identity.Equals((object)CreateIdentity(AnotherValue())));
+            Assert.False(identity.Equals((object)null));
+            Assert.True(identity.Equals((object)identity));
+            Assert.False(identity.Equals((object)anotherIdentity));
+            Assert.True(identity.Equals((object)sameIdentity));
+            Assert.False(identity.Equals((object)CreateIdentity(AnotherValue())));
         }
 
         [Fact(DisplayName = "Generic equals test")]
         public void ShouldPassGenericEqualsTest()
         {
             var value = SameValue();
-            var Identity = CreateIdentity(value);
+            var identity = CreateIdentity(value);
             var sameIdentity = CreateIdentity(value);
             var anotherIdentity = new GenericIdentity<TValue>(value);
 
             GenericIdentity<TValue> nullIdentity = null;
-            Assert.False(Identity.Equals(nullIdentity));
-            Assert.True(Identity.Equals(Identity));
-            Assert.False(Identity.Equals(anotherIdentity));
-            Assert.True(Identity.Equals(sameIdentity));
-            Assert.False(Identity.Equals(CreateIdentity(AnotherValue())));
+            Assert.False(identity.Equals(nullIdentity));
+            Assert.True(identity.Equals(identity));
+            Assert.False(identity.Equals(anotherIdentity));
+            Assert.True(identity.Equals(sameIdentity));
+            Assert.False(identity.Equals(CreateIdentity(AnotherValue())));
         }
 
         [Fact(DisplayName = "Should return value when converting to string")]
         public void ShouldReturnValueWhenConvertingToString()
         {
             var value = SameValue();
-            var Identity = CreateIdentity(value);
+            var identity = CreateIdentity(value);
 
-            Assert.Equal(value.ToString(), Identity.ToString());
+            Assert.Equal(value.ToString(), identity.ToString());
         }
 
         [Fact(DisplayName = "Should not match different types")]
