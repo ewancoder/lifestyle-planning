@@ -4,9 +4,9 @@
     using Xbehave;
     using Xunit;
 
+    [Trait("Category", "Project name")]
     public class ProjectNameFeature
     {
-        [Trait("Category", "Project name")]
         [Scenario(DisplayName = "Can't be empty")]
         public void CanNotBeEmpty(string name, ProjectName projectName, Exception exception)
         {
@@ -20,7 +20,6 @@
                 .x(() => Assert.IsType<ArgumentException>(exception));
         }
 
-        [Trait("Category", "Project name")]
         [Scenario(DisplayName = "Can't exceed 100 characters length")]
         public void CanNotExceed100CharactersLength(string name, ProjectName projectName, Exception exception)
         {
@@ -34,7 +33,6 @@
                 .x(() => Assert.IsType<ArgumentException>(exception));
         }
 
-        [Trait("Category", "Project name")]
         [Scenario(DisplayName = "Can be 1 to 100 characters long")]
         [MemberData(nameof(CanBe1To100CharactersLongData))]
         public void CanBe1To100CharactersLong(string name, ProjectName projectName)
@@ -56,7 +54,6 @@
             new object[] { new string('f', 100) }
         };
 
-        [Trait("Category", "Project name")]
         [Scenario(DisplayName = "Should not accept null")]
         public void ShouldNotAcceptNull(string name, Exception exception)
         {
