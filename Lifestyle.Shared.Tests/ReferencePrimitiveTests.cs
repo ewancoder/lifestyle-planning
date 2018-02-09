@@ -8,7 +8,7 @@
         where TPrimitive : Primitive<TValue>
         where TValue : class
     {
-        [Fact(DisplayName = "Should throw if value is null")]
+        [Fact(DisplayName = "Shared: should throw if value is null")]
         public void ShouldThrowIfValueIsNull()
         {
             Assert.Throws<ArgumentNullException>(() => CreatePrimitive(null));

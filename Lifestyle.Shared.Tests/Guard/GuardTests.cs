@@ -1,4 +1,4 @@
-﻿namespace Lifestyle.Shared.Tests
+﻿namespace Lifestyle.Shared.Tests.Guard
 {
     using System;
     using Xunit;
@@ -12,7 +12,7 @@
             var paramName = "paramName";
 
             var exception = Assert.Throws<ArgumentNullException>(
-                () => Guard.ThrowIfNull<object>(null, paramName));
+                () => Shared.Guard.ThrowIfNull<object>(null, paramName));
 
             Assert.Equal(paramName, exception.ParamName);
         }
@@ -20,7 +20,7 @@
         [Fact(DisplayName = "Should not throw if object is not null")]
         public void ShouldNotThrowIfObjectIsNotNull()
         {
-            Guard.ThrowIfNull(string.Empty, string.Empty);
+            Shared.Guard.ThrowIfNull(string.Empty, string.Empty);
         }
     }
 }

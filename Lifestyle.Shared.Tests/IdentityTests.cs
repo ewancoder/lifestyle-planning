@@ -6,13 +6,13 @@
     public abstract class IdentityTests<TIdentity, TValue>
         where TIdentity : Identity<TValue>
     {
-        [Fact(DisplayName = "Should throw if value has default value")]
+        [Fact(DisplayName = "Shared: should throw if value has default value")]
         public void ShouldThrowIfValueHasDefaultValue()
         {
             Assert.Throws<ArgumentException>(() => CreateIdentity(default(TValue)));
         }
 
-        [Fact(DisplayName = "Should set value")]
+        [Fact(DisplayName = "Shared: should set value")]
         public void ShouldSetValue()
         {
             var value = SameValue();
@@ -21,7 +21,7 @@
             Assert.Equal(value, Identity.Value);
         }
 
-        [Fact(DisplayName = "Hash code test")]
+        [Fact(DisplayName = "Shared: hash code test")]
         public void ShouldPassHashCodeTest()
         {
             var valueA = SameValue();
@@ -37,7 +37,7 @@
             Assert.NotEqual(identityA1.GetHashCode(), identityB1.GetHashCode());
         }
 
-        [Fact(DisplayName = "Equals test")]
+        [Fact(DisplayName = "Shared: equals test")]
         public void ShouldPassEqualsTest()
         {
             var value = SameValue();
@@ -52,7 +52,7 @@
             Assert.False(identity.Equals((object)CreateIdentity(AnotherValue())));
         }
 
-        [Fact(DisplayName = "Generic equals test")]
+        [Fact(DisplayName = "Shared: generic equals test")]
         public void ShouldPassGenericEqualsTest()
         {
             var value = SameValue();
@@ -68,7 +68,7 @@
             Assert.False(identity.Equals(CreateIdentity(AnotherValue())));
         }
 
-        [Fact(DisplayName = "Should return value when converting to string")]
+        [Fact(DisplayName = "Shared: should return value when converting to string")]
         public void ShouldReturnValueWhenConvertingToString()
         {
             var value = SameValue();
@@ -77,7 +77,7 @@
             Assert.Equal(value.ToString(), identity.ToString());
         }
 
-        [Fact(DisplayName = "Should not match different types")]
+        [Fact(DisplayName = "Shared: should not match different types")]
         public void ShouldNotMatchDifferentTypes()
         {
             var value = SameValue();

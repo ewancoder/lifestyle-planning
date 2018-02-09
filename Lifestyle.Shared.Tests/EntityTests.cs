@@ -5,7 +5,7 @@
     public abstract class EntityTests<TEntity, TId> : TestBase
         where TEntity : Entity<TId>
     {
-        [Fact(DisplayName = "Hash code test")]
+        [Fact(DisplayName = "Shared: hash code test")]
         public void ShouldPassHashCodeTest()
         {
             var identityA = SameIdentity();
@@ -21,7 +21,7 @@
             Assert.NotEqual(entityA1.GetHashCode(), entityB1.GetHashCode());
         }
 
-        [Fact(DisplayName = "Equals test")]
+        [Fact(DisplayName = "Shared: equals test")]
         public void ShouldPassEqualsTest()
         {
             var identity = SameIdentity();
@@ -36,7 +36,7 @@
             Assert.False(entity.Equals((object)CreateEntity(AnotherIdentity())));
         }
 
-        [Fact(DisplayName = "Generic equals test")]
+        [Fact(DisplayName = "Shared: generic equals test")]
         public void ShouldPassGenericEqualsTest()
         {
             var identity = SameIdentity();
@@ -52,7 +52,7 @@
             Assert.False(entity.Equals(CreateEntity(AnotherIdentity())));
         }
 
-        [Fact(DisplayName = "Should not match different types")]
+        [Fact(DisplayName = "Shared: should not match different types")]
         public void ShouldNotMatchDifferentTypes()
         {
             var identity = SameIdentity();

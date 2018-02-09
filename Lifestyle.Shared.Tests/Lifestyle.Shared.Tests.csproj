@@ -56,7 +56,7 @@
     <Compile Include="GenericEntity.cs" />
     <Compile Include="GenericIdentity.cs" />
     <Compile Include="GenericPrimitive.cs" />
-    <Compile Include="GuardTests.cs" />
+    <Compile Include="Guard\GuardTests.cs" />
     <Compile Include="EntityTests.cs" />
     <Compile Include="IdentityTests.cs" />
     <Compile Include="Identity\ReferenceTestIdentity.cs" />
@@ -71,7 +71,6 @@
     <Compile Include="Primitive\ValueTestPrimitive.cs" />
     <Compile Include="Primitive\ValueTypePrimitiveTests.cs" />
     <Compile Include="TestBase.cs" />
-    <Compile Include="TestHelper.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />

@@ -8,7 +8,7 @@
     {
         protected abstract IEnumerable<Action> ShouldThrowNullActions();
 
-        [Fact(DisplayName = "Should throw null")]
+        [Fact(DisplayName = "Shared: should throw null")]
         public void ShouldThrowNull()
         {
             foreach (var action in ShouldThrowNullActions())

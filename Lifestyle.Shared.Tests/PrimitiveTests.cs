@@ -5,7 +5,7 @@
     public abstract class PrimitiveTests<TPrimitive, TValue>
         where TPrimitive : Primitive<TValue>
     {
-        [Fact(DisplayName = "Should set value")]
+        [Fact(DisplayName = "Shared: should set value")]
         public void ShouldSetValue()
         {
             var value = SameValue();
@@ -14,7 +14,7 @@
             Assert.Equal(value, primitive.Value);
         }
 
-        [Fact(DisplayName = "Hash code test")]
+        [Fact(DisplayName = "Shared: hash code test")]
         public void ShouldPassHashCodeTest()
         {
             var valueA = SameValue();
@@ -30,7 +30,7 @@
             Assert.NotEqual(primitiveA1.GetHashCode(), primitiveB1.GetHashCode());
         }
 
-        [Fact(DisplayName = "Equals test")]
+        [Fact(DisplayName = "Shared: equals test")]
         public void ShouldPassEqualsTest()
         {
             var value = SameValue();
@@ -45,7 +45,7 @@
             Assert.False(primitive.Equals((object)CreatePrimitive(AnotherValue())));
         }
 
-        [Fact(DisplayName = "Generic equals test")]
+        [Fact(DisplayName = "Shared: generic equals test")]
         public void ShouldPassGenericEqualsTest()
         {
             var value = SameValue();
@@ -61,7 +61,7 @@
             Assert.False(primitive.Equals(CreatePrimitive(AnotherValue())));
         }
 
-        [Fact(DisplayName = "Should return value when converting to string")]
+        [Fact(DisplayName = "Shared: should return value when converting to string")]
         public void ShouldReturnValueWhenConvertingToString()
         {
             var value = SameValue();
@@ -70,7 +70,7 @@
             Assert.Equal(value.ToString(), primitive.ToString());
         }
 
-        [Fact(DisplayName = "Should not match different types")]
+        [Fact(DisplayName = "Shared: should not match different types")]
         public void ShouldNotMatchDifferentTypes()
         {
             var value = SameValue();
