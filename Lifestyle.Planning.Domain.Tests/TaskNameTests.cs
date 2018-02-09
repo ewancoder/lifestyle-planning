@@ -3,31 +3,37 @@
     using System;
     using Xbehave;
     using Xunit;
+    using Shared.Tests;
 
-    [Trait("Category", "Project name")]
-    public class ProjectNameFeature
+    [Trait("Category", "Task name")]
+    public class TaskNameTests : PrimitiveTests<TaskName, string>
     {
+        protected override string SameValue() => "same value";
+        protected override string AnotherValue() => "another value";
+        protected override TaskName CreatePrimitive(string value)
+            => new TaskName(value);
+
         [Scenario(DisplayName = "Can't be empty")]
-        public void CanNotBeEmpty(string name, ProjectName projectName, Exception exception)
+        public void CanNotBeEmpty(string name, TaskName taskName, Exception exception)
         {
             "Given name"
                 .x(() => name = string.Empty);
 
-            "When I create project name"
-                .x(() => exception = Record.Exception(() => new ProjectName(name)));
+            "When I create task name"
+                .x(() => exception = Record.Exception(() => new TaskName(name)));
 
             "Then ArgumentException is thrown"
                 .x(() => Assert.IsType<ArgumentException>(exception));
         }
 
         [Scenario(DisplayName = "Can't exceed 100 characters length")]
-        public void CanNotExceed100CharactersLength(string name, ProjectName projectName, Exception exception)
+        public void CanNotExceed100CharactersLength(string name, TaskName taskName, Exception exception)
         {
             "Given name that is 101 characters long"
                 .x(() => name = new string('f', 101));
 
-            "When I create project name"
-                .x(() => exception = Record.Exception(() => new ProjectName(name)));
+            "When I create task name"
+                .x(() => exception = Record.Exception(() => new TaskName(name)));
 
             "Then ArgumentException is thrown"
                 .x(() => Assert.IsType<ArgumentException>(exception));
@@ -35,15 +41,15 @@
 
         [Scenario(DisplayName = "Can be 1 to 100 characters long")]
         [MemberData(nameof(CanBe1To100CharactersLongData))]
-        public void CanBe1To100CharactersLong(string name, ProjectName projectName)
+        public void CanBe1To100CharactersLong(string name, TaskName taskName)
         {
             $"Given name in between 1 and 100 characters long: {name}".x(() => { });
 
-            "When I create project name"
-                .x(() => projectName = new ProjectName(name));
+            "When I create task name"
+                .x(() => taskName = new TaskName(name));
 
-            "Then name should match project name value"
-                .x(() => Assert.Equal(name, projectName.Value));
+            "Then name should match task name value"
+                .x(() => Assert.Equal(name, taskName.Value));
         }
 
         public static object[][] CanBe1To100CharactersLongData => new object[][]
@@ -59,8 +65,8 @@
         {
             "Given name is null".x(() => name = null);
 
-            "When I create project name"
-                .x(() => exception = Record.Exception(() => new ProjectName(name)));
+            "When I create task name"
+                .x(() => exception = Record.Exception(() => new TaskName(name)));
 
             $"Then {nameof(ArgumentNullException)} should be thrown"
                 .x(() => Assert.IsType<ArgumentNullException>(exception));

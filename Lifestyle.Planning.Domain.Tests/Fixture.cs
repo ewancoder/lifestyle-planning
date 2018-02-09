@@ -1,6 +1,6 @@
 ﻿namespace Lifestyle.Planning.Domain.Tests
 {
-    internal static class TestFixture
+    internal static class Fixture
     {
         public static Project Project()
         {

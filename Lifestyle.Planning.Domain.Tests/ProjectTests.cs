@@ -1,18 +1,40 @@
 ﻿namespace Lifestyle.Planning.Domain.Tests
 {
     using System;
-    using System.Collections.Generic;
     using Xbehave;
     using Xunit;
+    using Shared.Tests;
+    using System.Collections.Generic;
 
     [Trait("Category", "Project")]
-    public sealed class ProjectFeature
+    public sealed class ProjectTests : EntityTests<Project, ProjectId>
     {
+        private readonly ProjectId _sameId = ProjectId.New();
+        private readonly ProjectId _anotherId = ProjectId.New();
+
+        protected override ProjectId SameIdentity() => _sameId;
+        protected override ProjectId AnotherIdentity() => _anotherId;
+        protected override Project CreateEntity(ProjectId identity)
+            => new Project(new Project.State { ProjectId = identity });
+
+        protected override IEnumerable<Action> ShouldThrowNullActions()
+        {
+            var project = Fixture.Project();
+
+            return new Action[]
+            {
+                () => new Project(null, Fixture.ProjectName()),
+                () => new Project(Fixture.ProjectId(), null),
+                () => new Project(null),
+                () => project.Rename(null)
+            };
+        }
+
         [Scenario(DisplayName = "Can rename")]
         public void CanRename(Project project, ProjectName name)
         {
             "Given project"
-                .x(() => project = TestFixture.Project());
+                .x(() => project = Fixture.Project());
 
             "And another name".x(() =>
             {
@@ -32,7 +54,7 @@
         {
             "Given not archived project".x(() =>
             {
-                project = TestFixture.Project();
+                project = Fixture.Project();
                 Assert.False(project.GetState().IsArchived);
             });
 
@@ -65,10 +87,10 @@
         public void CanCreate(ProjectId projectId, ProjectName name, Project project)
         {
             "Given project identity"
-                .x(() => projectId = TestFixture.ProjectId());
+                .x(() => projectId = Fixture.ProjectId());
 
             "And project name"
-                .x(() => name = TestFixture.ProjectName());
+                .x(() => name = Fixture.ProjectName());
 
             "When I create project"
                 .x(() => project = new Project(projectId, name));
@@ -84,30 +106,10 @@
         public void ShouldNotBeArchivedWhenCreated(Project project)
         {
             "When I create project"
-                .x(() => project = new Project(TestFixture.ProjectId(), TestFixture.ProjectName()));
+                .x(() => project = new Project(Fixture.ProjectId(), Fixture.ProjectName()));
 
             "Then project is not archived"
                 .x(() => Assert.False(project.GetState().IsArchived));
-        }
-
-        [Fact(DisplayName = "Should not accept null arguments")]
-        public void ShouldNotAcceptNullArguments()
-        {
-            var project = TestFixture.Project();
-
-            ThrowsNull(new Action[]
-            {
-                () => new Project(null, TestFixture.ProjectName()),
-                () => new Project(TestFixture.ProjectId(), null),
-                () => new Project(null),
-                () => project.Rename(null)
-            });
-        }
-
-        private void ThrowsNull(IEnumerable<Action> actions)
-        {
-            foreach (var action in actions)
-                Assert.Throws<ArgumentNullException>(action);
         }
     }
 }

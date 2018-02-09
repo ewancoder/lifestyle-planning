@@ -2,7 +2,7 @@
 {
     using Xunit;
 
-    public abstract class EntityTests<TEntity, TId>
+    public abstract class EntityTests<TEntity, TId> : TestBase
         where TEntity : Entity<TId>
     {
         [Fact(DisplayName = "Hash code test")]

@@ -4,15 +4,38 @@
     using System.Collections.Generic;
     using Xbehave;
     using Xunit;
+    using Shared.Tests;
 
     [Trait("Category", "Task")]
-    public sealed class TaskFeature
+    public sealed class TaskTests : EntityTests<Task, TaskId>
     {
+        private readonly TaskId _sameId = TaskId.New();
+        private readonly TaskId _anotherId = TaskId.New();
+
+        protected override TaskId SameIdentity() => _sameId;
+        protected override TaskId AnotherIdentity() => _anotherId;
+        protected override Task CreateEntity(TaskId identity)
+            => new Task(new Task.State { TaskId = identity });
+
+        protected override IEnumerable<Action> ShouldThrowNullActions()
+        {
+            var task = Fixture.Task();
+
+            return new Action[]
+            {
+                () => new Task(null, Fixture.ProjectId(), Fixture.TaskName()),
+                () => new Task(Fixture.TaskId(), null, Fixture.TaskName()),
+                () => new Task(Fixture.TaskId(), Fixture.ProjectId(), null),
+                () => new Task(null),
+                () => task.Rename(null)
+            };
+        }
+
         [Scenario(DisplayName = "Can rename")]
         public void CanRename(Task task, TaskName name)
         {
             "Given task"
-                .x(() => task = TestFixture.Task());
+                .x(() => task = Fixture.Task());
 
             "And another name".x(() =>
             {
@@ -32,7 +55,7 @@
         {
             "Given not archived task".x(() =>
             {
-                task = TestFixture.Task();
+                task = Fixture.Task();
                 Assert.False(task.GetState().IsArchived);
             });
 
@@ -65,13 +88,13 @@
         public void CanCreate(TaskId taskId, ProjectId projectId, TaskName name, Task task)
         {
             "Given task identity"
-                .x(() => taskId = TestFixture.TaskId());
+                .x(() => taskId = Fixture.TaskId());
 
             "And project identity"
-                .x(() => projectId = TestFixture.ProjectId());
+                .x(() => projectId = Fixture.ProjectId());
 
             "And task name"
-                .x(() => name = TestFixture.TaskName());
+                .x(() => name = Fixture.TaskName());
 
             "When I create task"
                 .x(() => task = new Task(taskId, projectId, name));
@@ -88,31 +111,10 @@
         public void ShouldNotBeArchivedWhenCreated(Task task)
         {
             "When I create task"
-                .x(() => task = new Task(TestFixture.TaskId(), TestFixture.ProjectId(), TestFixture.TaskName()));
+                .x(() => task = new Task(Fixture.TaskId(), Fixture.ProjectId(), Fixture.TaskName()));
 
             "Then task is not archived"
                 .x(() => Assert.False(task.GetState().IsArchived));
-        }
-
-        [Fact(DisplayName = "Should not accept null arguments")]
-        public void ShouldNotAcceptNullArguments()
-        {
-            var task = TestFixture.Task();
-
-            ThrowsNull(new Action[]
-            {
-                () => new Task(null, TestFixture.ProjectId(), TestFixture.TaskName()),
-                () => new Task(TestFixture.TaskId(), null, TestFixture.TaskName()),
-                () => new Task(TestFixture.TaskId(), TestFixture.ProjectId(), null),
-                () => new Task(null),
-                () => task.Rename(null)
-            });
-        }
-
-        private void ThrowsNull(IEnumerable<Action> actions)
-        {
-            foreach (var action in actions)
-                Assert.Throws<ArgumentNullException>(action);
         }
     }
 }

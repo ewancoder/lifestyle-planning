@@ -7,7 +7,7 @@
         where TIdentity : Identity<TValue>
     {
         [Fact(DisplayName = "Should throw if value has default value")]
-        public void ShouldThrowIfValueIsNull()
+        public void ShouldThrowIfValueHasDefaultValue()
         {
             Assert.Throws<ArgumentException>(() => CreateIdentity(default(TValue)));
         }

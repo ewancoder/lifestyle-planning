@@ -57,17 +57,13 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="ProjectIdentityTests.cs" />
-    <Compile Include="ProjectEntityTests.cs" />
-    <Compile Include="TaskEntityTests.cs" />
     <Compile Include="TaskIdentityTests.cs" />
-    <Compile Include="TaskNameFeature.cs" />
-    <Compile Include="ProjectNameFeature.cs" />
-    <Compile Include="TaskFeature.cs" />
-    <Compile Include="ProjectFeature.cs" />
+    <Compile Include="TaskNameTests.cs" />
+    <Compile Include="ProjectNameTests.cs" />
+    <Compile Include="TaskTests.cs" />
+    <Compile Include="ProjectTests.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="ProjectNamePrimitive.cs" />
-    <Compile Include="TaskNamePrimitive.cs" />
-    <Compile Include="TestFixture.cs" />
+    <Compile Include="Fixture.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="app.config" />
