@@ -5,6 +5,7 @@
     public abstract class EntityTests<TEntity, TId> : TestBase
         where TEntity : Entity<TId>
     {
+        [Trait("Category", "Shared")]
         [Fact(DisplayName = "Shared: hash code test")]
         public void ShouldPassHashCodeTest()
         {
@@ -21,6 +22,7 @@
             Assert.NotEqual(entityA1.GetHashCode(), entityB1.GetHashCode());
         }
 
+        [Trait("Category", "Shared")]
         [Fact(DisplayName = "Shared: equals test")]
         public void ShouldPassEqualsTest()
         {
@@ -36,6 +38,7 @@
             Assert.False(entity.Equals((object)CreateEntity(AnotherIdentity())));
         }
 
+        [Trait("Category", "Shared")]
         [Fact(DisplayName = "Shared: generic equals test")]
         public void ShouldPassGenericEqualsTest()
         {
@@ -52,6 +55,7 @@
             Assert.False(entity.Equals(CreateEntity(AnotherIdentity())));
         }
 
+        [Trait("Category", "Shared")]
         [Fact(DisplayName = "Shared: should not match different types")]
         public void ShouldNotMatchDifferentTypes()
         {

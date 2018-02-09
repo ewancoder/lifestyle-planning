@@ -5,6 +5,7 @@
     public abstract class PrimitiveTests<TPrimitive, TValue>
         where TPrimitive : Primitive<TValue>
     {
+        [Trait("Category", "Shared")]
         [Fact(DisplayName = "Shared: should set value")]
         public void ShouldSetValue()
         {
@@ -14,6 +15,7 @@
             Assert.Equal(value, primitive.Value);
         }
 
+        [Trait("Category", "Shared")]
         [Fact(DisplayName = "Shared: hash code test")]
         public void ShouldPassHashCodeTest()
         {
@@ -30,6 +32,7 @@
             Assert.NotEqual(primitiveA1.GetHashCode(), primitiveB1.GetHashCode());
         }
 
+        [Trait("Category", "Shared")]
         [Fact(DisplayName = "Shared: equals test")]
         public void ShouldPassEqualsTest()
         {
@@ -45,6 +48,7 @@
             Assert.False(primitive.Equals((object)CreatePrimitive(AnotherValue())));
         }
 
+        [Trait("Category", "Shared")]
         [Fact(DisplayName = "Shared: generic equals test")]
         public void ShouldPassGenericEqualsTest()
         {
@@ -61,6 +65,7 @@
             Assert.False(primitive.Equals(CreatePrimitive(AnotherValue())));
         }
 
+        [Trait("Category", "Shared")]
         [Fact(DisplayName = "Shared: should return value when converting to string")]
         public void ShouldReturnValueWhenConvertingToString()
         {
@@ -70,6 +75,7 @@
             Assert.Equal(value.ToString(), primitive.ToString());
         }
 
+        [Trait("Category", "Shared")]
         [Fact(DisplayName = "Shared: should not match different types")]
         public void ShouldNotMatchDifferentTypes()
         {

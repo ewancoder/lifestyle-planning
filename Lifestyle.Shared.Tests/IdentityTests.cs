@@ -6,12 +6,14 @@
     public abstract class IdentityTests<TIdentity, TValue>
         where TIdentity : Identity<TValue>
     {
+        [Trait("Category", "Shared")]
         [Fact(DisplayName = "Shared: should throw if value has default value")]
         public void ShouldThrowIfValueHasDefaultValue()
         {
             Assert.Throws<ArgumentException>(() => CreateIdentity(default(TValue)));
         }
 
+        [Trait("Category", "Shared")]
         [Fact(DisplayName = "Shared: should set value")]
         public void ShouldSetValue()
         {
@@ -21,6 +23,7 @@
             Assert.Equal(value, Identity.Value);
         }
 
+        [Trait("Category", "Shared")]
         [Fact(DisplayName = "Shared: hash code test")]
         public void ShouldPassHashCodeTest()
         {
@@ -37,6 +40,7 @@
             Assert.NotEqual(identityA1.GetHashCode(), identityB1.GetHashCode());
         }
 
+        [Trait("Category", "Shared")]
         [Fact(DisplayName = "Shared: equals test")]
         public void ShouldPassEqualsTest()
         {
@@ -52,6 +56,7 @@
             Assert.False(identity.Equals((object)CreateIdentity(AnotherValue())));
         }
 
+        [Trait("Category", "Shared")]
         [Fact(DisplayName = "Shared: generic equals test")]
         public void ShouldPassGenericEqualsTest()
         {
@@ -68,6 +73,7 @@
             Assert.False(identity.Equals(CreateIdentity(AnotherValue())));
         }
 
+        [Trait("Category", "Shared")]
         [Fact(DisplayName = "Shared: should return value when converting to string")]
         public void ShouldReturnValueWhenConvertingToString()
         {
@@ -77,6 +83,7 @@
             Assert.Equal(value.ToString(), identity.ToString());
         }
 
+        [Trait("Category", "Shared")]
         [Fact(DisplayName = "Shared: should not match different types")]
         public void ShouldNotMatchDifferentTypes()
         {

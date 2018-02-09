@@ -8,6 +8,7 @@
         where TPrimitive : Primitive<TValue>
         where TValue : class
     {
+        [Trait("Category", "Shared")]
         [Fact(DisplayName = "Shared: should throw if value is null")]
         public void ShouldThrowIfValueIsNull()
         {
