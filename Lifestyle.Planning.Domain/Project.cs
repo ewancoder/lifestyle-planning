@@ -1,7 +1,6 @@
 ﻿namespace Lifestyle.Planning.Domain
 {
     using System;
-    using System.Collections.Generic;
     using Shared;
 
     public sealed class Project : AggregateRoot<ProjectId>

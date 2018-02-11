@@ -1,7 +1,7 @@
 ﻿namespace Lifestyle.Planning.Domain
 {
     using System;
-    using Lifestyle.Shared;
+    using Shared;
 
     public abstract class Name : Primitive<string>
     {

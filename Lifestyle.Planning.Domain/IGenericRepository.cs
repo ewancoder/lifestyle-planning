@@ -2,11 +2,11 @@
 {
     using Shared;
 
-    public interface IGenericRepository<TModel, TId>
-        where TModel : AggregateRoot<TId>
+    public interface IGenericRepository<TAggregateRoot, TId>
+        where TAggregateRoot : AggregateRoot<TId>
     {
         TId GetNextIdentity();
-        TModel FindById(TId id);
-        void Save(TModel aggregateRoot);
+        TAggregateRoot FindById(TId id);
+        void Save(TAggregateRoot aggregateRoot);
     }
 }
