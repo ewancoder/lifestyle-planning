@@ -1,75 +1,12 @@
 ﻿namespace Lifestyle.Planning.Domain.Tests
 {
-    using System;
-    using Xbehave;
     using Xunit;
-    using Shared.Tests;
 
     [Trait("Category", "Task name")]
-    public class TaskNameTests : PrimitiveTests<TaskName, string>
+    public class TaskNameTests : NameTests<TaskName>
     {
-        protected override string SameValue() => "same value";
-        protected override string AnotherValue() => "another value";
+        protected override int MaxLength() => 100;
         protected override TaskName CreatePrimitive(string value)
             => new TaskName(value);
-
-        [Scenario(DisplayName = "Can't be empty")]
-        public void CanNotBeEmpty(string name, TaskName taskName, Exception exception)
-        {
-            "Given name"
-                .x(() => name = string.Empty);
-
-            "When I create task name"
-                .x(() => exception = Record.Exception(() => new TaskName(name)));
-
-            "Then ArgumentException is thrown"
-                .x(() => Assert.IsType<ArgumentException>(exception));
-        }
-
-        [Scenario(DisplayName = "Can't exceed 100 characters length")]
-        public void CanNotExceed100CharactersLength(string name, TaskName taskName, Exception exception)
-        {
-            "Given name that is 101 characters long"
-                .x(() => name = new string('f', 101));
-
-            "When I create task name"
-                .x(() => exception = Record.Exception(() => new TaskName(name)));
-
-            "Then ArgumentException is thrown"
-                .x(() => Assert.IsType<ArgumentException>(exception));
-        }
-
-        [Scenario(DisplayName = "Can be 1 to 100 characters long")]
-        [MemberData(nameof(CanBe1To100CharactersLongData))]
-        public void CanBe1To100CharactersLong(string name, TaskName taskName)
-        {
-            $"Given name in between 1 and 100 characters long: {name}".x(() => { });
-
-            "When I create task name"
-                .x(() => taskName = new TaskName(name));
-
-            "Then name should match task name value"
-                .x(() => Assert.Equal(name, taskName.Value));
-        }
-
-        public static object[][] CanBe1To100CharactersLongData => new object[][]
-        {
-            new object[] { "a" },
-            new object[] { "abc" },
-            new object[] { new string('f', 99) },
-            new object[] { new string('f', 100) }
-        };
-
-        [Scenario(DisplayName = "Should not accept null")]
-        public void ShouldNotAcceptNull(string name, Exception exception)
-        {
-            "Given name is null".x(() => name = null);
-
-            "When I create task name"
-                .x(() => exception = Record.Exception(() => new TaskName(name)));
-
-            $"Then {nameof(ArgumentNullException)} should be thrown"
-                .x(() => Assert.IsType<ArgumentNullException>(exception));
-        }
     }
 }
