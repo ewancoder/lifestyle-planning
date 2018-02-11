@@ -59,6 +59,9 @@
     <Compile Include="ConcreteNameTests.cs" />
     <Compile Include="NameTests.cs" />
     <Compile Include="ProjectIdentityTests.cs" />
+    <Compile Include="StageIdentityTests.cs" />
+    <Compile Include="StageNameTests.cs" />
+    <Compile Include="StageTests.cs" />
     <Compile Include="TaskIdentityTests.cs" />
     <Compile Include="TaskNameTests.cs" />
     <Compile Include="ProjectNameTests.cs" />

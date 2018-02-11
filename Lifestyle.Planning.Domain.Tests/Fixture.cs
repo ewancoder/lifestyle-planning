@@ -1,5 +1,7 @@
 ﻿namespace Lifestyle.Planning.Domain.Tests
 {
+    using System.Collections.Generic;
+    using System.Linq;
     using Xunit;
 
     public static class Fixture
@@ -25,7 +27,8 @@
             {
                 ProjectId = ProjectId(),
                 Name = ProjectName(),
-                IsArchived = false
+                IsArchived = false,
+                Stages = new List<Stage> { Stage() }
             };
         }
 
@@ -34,11 +37,14 @@
             Assert.Equal(expected.ProjectId, actual.ProjectId);
             Assert.Equal(expected.Name, actual.Name);
             Assert.Equal(expected.IsArchived, actual.IsArchived);
+
+            Assert.True(Enumerable.SequenceEqual(expected.Stages, actual.Stages));
+            Assert.False(ReferenceEquals(expected.Stages, actual.Stages));
         }
 
         public static Task Task()
         {
-            return new Task(TaskId(), ProjectId(), TaskName());
+            return new Task(TaskId(), ProjectId(), StageId(), TaskName());
         }
 
         public static TaskId TaskId()
@@ -57,6 +63,7 @@
             {
                 TaskId = TaskId(),
                 ProjectId = ProjectId(),
+                StageId = StageId(),
                 Name = TaskName(),
                 IsArchived = false
             };
@@ -66,8 +73,24 @@
         {
             Assert.Equal(expected.TaskId, actual.TaskId);
             Assert.Equal(expected.ProjectId, actual.ProjectId);
+            Assert.Equal(expected.StageId, actual.StageId);
             Assert.Equal(expected.Name, actual.Name);
             Assert.Equal(expected.IsArchived, actual.IsArchived);
+        }
+
+        public static Stage Stage()
+        {
+            return new Stage(StageId(), StageName());
+        }
+
+        public static StageId StageId()
+        {
+            return new StageId(100);
+        }
+
+        public static StageName StageName()
+        {
+            return new StageName("stage name");
         }
     }
 }

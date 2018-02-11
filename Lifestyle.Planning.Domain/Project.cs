@@ -1,6 +1,8 @@
 ﻿namespace Lifestyle.Planning.Domain
 {
     using System;
+    using System.Collections.Generic;
+    using System.Linq;
     using Shared;
 
     public sealed class Project : AggregateRoot<ProjectId>
@@ -10,6 +12,7 @@
             public ProjectId ProjectId { get; set; }
             public ProjectName Name { get; set; }
             public bool IsArchived { get; set; }
+            public List<Stage> Stages { get; set; } = new List<Stage>();
 
             internal State Clone()
             {
@@ -17,7 +20,8 @@
                 {
                     ProjectId = ProjectId,
                     Name = Name,
-                    IsArchived = IsArchived
+                    IsArchived = IsArchived,
+                    Stages = Stages.ToList()
                 };
             }
         }

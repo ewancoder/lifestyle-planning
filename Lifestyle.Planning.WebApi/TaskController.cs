@@ -22,7 +22,7 @@
         [Route("")]
         public Guid Create(CreateTaskDto dto)
         {
-            return _taskApp.CreateTask(dto.ProjectId, dto.Name);
+            return _taskApp.CreateTask(dto.ProjectId, dto.StageId, dto.Name);
         }
 
         [HttpPut]

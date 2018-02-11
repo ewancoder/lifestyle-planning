@@ -27,13 +27,16 @@
         }
 
         [Scenario(DisplayName = "Should create task")]
-        public void ShouldCreateTask(string name, Guid projectId, TaskId nextIdentity, Guid resultIdentity)
+        public void ShouldCreateTask(string name, Guid projectId, int stageId, TaskId nextIdentity, Guid resultIdentity)
         {
             "Given name"
                 .x(() => name = "task name");
 
             "And project identity"
                 .x(() => projectId = Guid.NewGuid());
+
+            "And stage identity"
+                .x(() => stageId = 10);
 
             "And task repository that returns next identity".x(() =>
             {
@@ -45,7 +48,7 @@
             });
 
             "When I create task"
-                .x(() => resultIdentity = _sut.CreateTask(projectId, name));
+                .x(() => resultIdentity = _sut.CreateTask(projectId, stageId, name));
 
             "Then task repository should save the task"
                 .x(() => _taskRepositoryMock.Verify(x => x.Save(It.IsAny<Task>())));
@@ -53,9 +56,10 @@
             "And task identity should be returned"
                 .x(() => Assert.Equal(nextIdentity.Value, resultIdentity));
 
-            "And saved task should have valid name, identity and project identity".x(() =>
+            "And saved task should have valid name, identity, project identity and stage identity".x(() =>
             {
                 Assert.Equal(projectId, _savedTask.GetState().ProjectId.Value);
+                Assert.Equal(stageId, _savedTask.GetState().StageId.Value);
                 Assert.Equal(nextIdentity, _savedTask.GetState().TaskId);
                 Assert.Equal(name, _savedTask.GetState().Name.Value);
             });

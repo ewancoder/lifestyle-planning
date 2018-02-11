@@ -27,13 +27,14 @@
             _taskRepository.Save(task);
         }
 
-        public Guid CreateTask(Guid projectId, string name)
+        public Guid CreateTask(Guid projectId, int stageId, string name)
         {
             var aTaskName = new TaskName(name);
             var aProjectId = new ProjectId(projectId);
+            var aStageId = new StageId(stageId);
             var aTaskId = _taskRepository.GetNextIdentity();
 
-            var task = new Task(aTaskId, aProjectId, aTaskName);
+            var task = new Task(aTaskId, aProjectId, aStageId, aTaskName);
             _taskRepository.Save(task);
 
             return aTaskId.Value;

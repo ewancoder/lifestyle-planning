@@ -23,9 +23,10 @@
 
             return new Action[]
             {
-                () => new Task(null, Fixture.ProjectId(), Fixture.TaskName()),
-                () => new Task(Fixture.TaskId(), null, Fixture.TaskName()),
-                () => new Task(Fixture.TaskId(), Fixture.ProjectId(), null),
+                () => new Task(null, Fixture.ProjectId(), Fixture.StageId(), Fixture.TaskName()),
+                () => new Task(Fixture.TaskId(), null, Fixture.StageId(), Fixture.TaskName()),
+                () => new Task(Fixture.TaskId(), Fixture.ProjectId(), null, Fixture.TaskName()),
+                () => new Task(Fixture.TaskId(), Fixture.ProjectId(), Fixture.StageId(), null),
                 () => new Task(null),
                 () => task.Rename(null)
             };
@@ -95,7 +96,7 @@
         }
 
         [Scenario(DisplayName = "Can create")]
-        public void CanCreate(TaskId taskId, ProjectId projectId, TaskName name, Task task)
+        public void CanCreate(TaskId taskId, ProjectId projectId, StageId stageId, TaskName name, Task task)
         {
             "Given task identity"
                 .x(() => taskId = Fixture.TaskId());
@@ -103,17 +104,21 @@
             "And project identity"
                 .x(() => projectId = Fixture.ProjectId());
 
+            "And stage identity"
+                .x(() => stageId = Fixture.StageId());
+
             "And task name"
                 .x(() => name = Fixture.TaskName());
 
             "When I create task"
-                .x(() => task = new Task(taskId, projectId, name));
+                .x(() => task = new Task(taskId, projectId, stageId, name));
 
-            "Then task has appropriate identity, name and project identity".x(() =>
+            "Then task has appropriate identity, name, project identity and stage identity".x(() =>
             {
                 Assert.Equal(taskId, task.GetState().TaskId);
                 Assert.Equal(name, task.GetState().Name);
                 Assert.Equal(projectId, task.GetState().ProjectId);
+                Assert.Equal(stageId, task.GetState().StageId);
             });
         }
 
@@ -121,7 +126,7 @@
         public void ShouldNotBeArchivedWhenCreated(Task task)
         {
             "When I create task"
-                .x(() => task = new Task(Fixture.TaskId(), Fixture.ProjectId(), Fixture.TaskName()));
+                .x(() => task = new Task(Fixture.TaskId(), Fixture.ProjectId(), Fixture.StageId(), Fixture.TaskName()));
 
             "Then task is not archived"
                 .x(() => Assert.False(task.GetState().IsArchived));

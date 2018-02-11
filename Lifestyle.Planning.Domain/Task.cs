@@ -8,6 +8,7 @@
         public sealed class State
         {
             public ProjectId ProjectId { get; set; }
+            public StageId StageId { get; set; }
             public TaskId TaskId { get; set; }
             public TaskName Name { get; set; }
             public bool IsArchived { get; set; }
@@ -17,6 +18,7 @@
                 return new State
                 {
                     ProjectId = ProjectId,
+                    StageId = StageId,
                     TaskId = TaskId,
                     Name = Name,
                     IsArchived = IsArchived
@@ -27,16 +29,18 @@
         private readonly State _state;
 
         // Project actuality/validation is not performed.
-        public Task(TaskId taskId, ProjectId projectId, TaskName name)
+        public Task(TaskId taskId, ProjectId projectId, StageId stageId, TaskName name)
         {
             Guard.ThrowIfNull(taskId, nameof(taskId));
             Guard.ThrowIfNull(projectId, nameof(projectId));
+            Guard.ThrowIfNull(stageId, nameof(stageId));
             Guard.ThrowIfNull(name, nameof(name));
 
             _state = new State
             {
                 TaskId = taskId,
                 ProjectId = projectId,
+                StageId = stageId,
                 Name = name
             };
         }

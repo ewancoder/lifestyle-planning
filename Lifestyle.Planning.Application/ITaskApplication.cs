@@ -4,7 +4,7 @@
 
     public interface ITaskApplication
     {
-        Guid CreateTask(Guid projectId, string name);
+        Guid CreateTask(Guid projectId, int stageId, string name);
         void RenameTask(Guid taskId, string newName);
         void ArchiveTask(Guid taskId);
     }
