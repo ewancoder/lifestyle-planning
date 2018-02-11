@@ -30,6 +30,16 @@
             };
         }
 
+        [Fact(DisplayName = "Should reconstitute")]
+        public void ShouldReconstitute()
+        {
+            var state = Fixture.ProjectState();
+
+            var project = new Project(state);
+
+            Fixture.AssertEqual(state, project.GetState());
+        }
+
         [Scenario(DisplayName = "Can rename")]
         public void CanRename(Project project, ProjectName name)
         {

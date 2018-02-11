@@ -31,6 +31,16 @@
             };
         }
 
+        [Fact(DisplayName = "Should reconstitute")]
+        public void ShouldReconstitute()
+        {
+            var state = Fixture.TaskState();
+
+            var task = new Task(state);
+
+            Fixture.AssertEqual(state, task.GetState());
+        }
+
         [Scenario(DisplayName = "Can rename")]
         public void CanRename(Task task, TaskName name)
         {
