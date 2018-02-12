@@ -11,10 +11,6 @@
         [Key]
         public int RowId { get; set; }
 
-        [ForeignKey(nameof(Project))]
-        public int ProjectRowId { get; set; }
-        public ProjectDao Project { get; set; }
-
         [Index("ix_task_id", IsUnique = true)]
         public Guid TaskId { get; set; }
 

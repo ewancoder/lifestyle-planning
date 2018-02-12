@@ -35,15 +35,19 @@
             if (dao == null)
                 return null;
 
+            var tasks = _context.Tasks
+                .Where(t => t.ProjectId == projectId && !t.IsArchived)
+                .Select(t => new TaskInfo
+                {
+                    TaskId = t.TaskId,
+                    Name = t.Name
+                }).ToList();
+
             return new ProjectDetails
             {
                 ProjectId = dao.ProjectId,
                 Name = dao.Name,
-                Tasks = dao.Tasks.Select(t => new TaskInfo
-                {
-                    TaskId = t.TaskId,
-                    Name = t.Name
-                })
+                Tasks = tasks
             };
         }
     }

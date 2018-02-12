@@ -19,8 +19,6 @@
 
         public bool IsArchived { get; set; }
 
-        public virtual ICollection<TaskDao> Tasks { get; set; }
-
         public static ProjectDao CreateFrom(Project.State state)
         {
             var dao = new ProjectDao();
